@@ -29,7 +29,8 @@ public class PlayerControl : MonoBehaviour
 
     void ProcessInputs()
     {
-        moveHorizontal = Input.GetAxis("Horizontal");
+        moveHorizontal = Input.GetAxisRaw("Horizontal");
+        Debug.Log(moveHorizontal);
     }
 
     void Move()
