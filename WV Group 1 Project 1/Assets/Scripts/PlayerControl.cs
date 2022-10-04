@@ -7,10 +7,8 @@ public class PlayerControl : MonoBehaviour
     public float runSpeed;
     public Rigidbody2D rb;
 
-    private Vector2 moveSpeed;
-    private float move;
-    private float moveHorizontal;
-    
+    private float arrowInput;
+
     void Start()
     {
         
@@ -19,23 +17,13 @@ public class PlayerControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        ProcessInputs();
+        arrowInput = Input.GetAxis("Horizontal");
     }
 
     void FixedUpdate()
     {
-        Move();
+        Vector2 velocity = new Vector2(arrowInput * runSpeed, rb.velocity.y);
+        rb.velocity = velocity;
     }
 
-    void ProcessInputs()
-    {
-        moveHorizontal = Input.GetAxisRaw("Horizontal");
-        Debug.Log(moveHorizontal);
-    }
-
-    void Move()
-    {
-        moveSpeed = new Vector2(moveHorizontal * runSpeed, rb.velocity.y);
-        rb.velocity = moveSpeed;
-    }
 }
